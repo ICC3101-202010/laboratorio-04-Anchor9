@@ -8,5 +8,8 @@ namespace LAB4
 {
     public class AssemblingM
     {
+        private List<Part> parts;
+
     }
+
 }
