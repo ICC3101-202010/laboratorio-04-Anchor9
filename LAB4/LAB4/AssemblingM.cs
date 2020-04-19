@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LAB4
 {
-    public class AssemblingM
+    public class AssemblingM : Machine
     {
         private List<Part> parts;
 
@@ -48,6 +48,21 @@ namespace LAB4
         {
             parts.Clear();
         }
+
+        public override void TurnOff() 
+        {
+            Console.WriteLine("Workday finished, turnning of Assembler");
+        }
+        public override void TurnOn()
+        {
+            Console.WriteLine("It's time, assembling machine working");
+        }
+        public override void Reboot(List<Part> parts)
+        {
+            parts.Clear();
+        }
+
+
 
     }
 

@@ -11,7 +11,7 @@ namespace LAB4
         private string name;
         public abstract void TurnOff();
         public abstract void TurnOn();
-        public abstract void Reboot();
+        public abstract void Reboot(List<Part> parts);
     }
 
 

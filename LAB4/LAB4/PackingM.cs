@@ -6,7 +6,53 @@ using System.Threading.Tasks;
 
 namespace LAB4
 {
-    public class PackingM
+    public class PackingM : Machine
     {
+        public PackingM()
+        {
+        }
+
+        public void AddPartPackingList(Part part, List<Part> parts)
+        {
+            int weight = part.Weight;
+            int height = part.Height;
+            string brand = part.Brand;
+            int width = part.Width;
+            string material = part.Material;
+            string type = part.Type;
+
+            parts.Add(new Part(weight, height, width, type, brand, material));
+        }
+
+        public string PackingcheckMemory(List<Part> parts)
+        {
+            int parts_quantity = parts.Count();
+            string answer;
+
+            if (parts_quantity >= 7)
+            {
+                Console.WriteLine("Packer memory full, please reboot Machine");
+                answer = "yes";
+                return answer;
+            }
+            else
+            {
+                Console.WriteLine("Memory not yet full");
+                answer = "no";
+                return answer;
+            }
+        }
+        public override void TurnOff()
+        {
+            Console.WriteLine("Workday finished, turnning of Assembler");
+        }
+        public override void TurnOn()
+        {
+            Console.WriteLine("It's time, Packer machine working");
+        }
+        public override void Reboot(List<Part> parts)
+        {
+            parts.Clear();
+        }
     }
 }
