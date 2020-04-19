@@ -29,7 +29,7 @@ namespace LAB4
             int parts_quantity = parts.Count();
             string answer;
 
-            if (parts_quantity >= 7)
+            if (parts_quantity >= 4)
             {
                 Console.WriteLine("Packer memory full, please reboot Machine");
                 answer = "yes";

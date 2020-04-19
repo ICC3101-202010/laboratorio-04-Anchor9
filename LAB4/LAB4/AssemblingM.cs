@@ -26,12 +26,17 @@ namespace LAB4
             parts.Add(new Part(weight, height, width, type, brand, material));
         }
 
+        public string ShowInfo(Part part) 
+        {
+            return part.Type + " " +  part.Brand + " " + part.Material;
+        }
+
         public string AcheckMemory(List<Part> parts) 
         {
             int parts_quantity = parts.Count();
             string answer;
 
-            if (parts_quantity >= 7)
+            if (parts_quantity >= 4)
             {
                 Console.WriteLine("Assembly memory full, please reboot Machine");
                 answer = "yes";
