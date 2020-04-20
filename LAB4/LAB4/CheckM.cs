@@ -32,16 +32,22 @@ namespace LAB4
 
             if (parts_quantity >= 4)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Checker memory full, please reboot Machine");
+                Console.ForegroundColor = ConsoleColor.White;
                 answer = "yes";
                 return answer;
             }
             else
             {
-                Console.WriteLine("Memory not yet full");
+                Console.WriteLine("Checker Memory not yet full");
                 answer = "no";
                 return answer;
             }
+        }
+        public string ShowInfo(Part part)
+        {
+            return part.Type + " " + part.Brand + " " + part.Material;
         }
         public override void TurnOff()
         {

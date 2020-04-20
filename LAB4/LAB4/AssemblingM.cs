@@ -38,13 +38,15 @@ namespace LAB4
 
             if (parts_quantity >= 4)
             {
-                Console.WriteLine("Assembly memory full, please reboot Machine");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Assembler memory full, please reboot Machine");
+                Console.ForegroundColor = ConsoleColor.White;
                 answer = "yes";
                 return answer;
             }
             else 
             {
-                Console.WriteLine("Memory not yet full");
+                Console.WriteLine("Assembler Memory not yet full");
                 answer = "no";
                 return answer;
             } 

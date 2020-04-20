@@ -19,7 +19,7 @@ namespace LAB4
 
             List<Part> AssemblerPartList = new List<Part>();
             List<Part> CheckerPartList = new List<Part>();
-            List<Part> ReceiverrPartList = new List<Part>();
+            List<Part> ReceiverPartList = new List<Part>();
             List<Part> StoragePartList = new List<Part>();
             List<Part> PackerPartList = new List<Part>();
             List<Part> GeneralPartList = new List<Part>();
@@ -53,8 +53,9 @@ namespace LAB4
 
 
 
-
-            Console.WriteLine("Welcome");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Welcome \n");
+            Console.ForegroundColor = ConsoleColor.White;
 
             double time = 8;
 
@@ -70,13 +71,123 @@ namespace LAB4
                 }
                 else if (time >= 10 )
                 {
-                    Console.WriteLine("Actual time"+ time + "working");
-                    foreach (var parts in GeneralPartList) 
+                    Console.WriteLine("Actual time " + time + " working \n");
+                    foreach (var parts in GeneralPartList)
                     {
-                        AssemblerPartList.Add(parts);
-                        assemblingMachine.AcheckMemory(AssemblerPartList);
-                        Console.WriteLine("Added: " + assemblingMachine.ShowInfo(parts));
-                        Thread.Sleep(3000);
+
+
+                        string statusReceiver = ReceiverMachine.ReceivercheckMemory(ReceiverPartList);
+                        string statusStorage = storageMachine.StoragecheckMemory(StoragePartList);
+                        string statusAssembler = assemblingMachine.AcheckMemory(AssemblerPartList);
+                        string statusCheck = CheckerMachine.CcheckMemory(CheckerPartList);
+                        string statusPacker = PackingMachine.PackingcheckMemory(PackerPartList);
+
+                        if (statusReceiver == "no")
+                        {
+                            ReceiverPartList.Add(parts);
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.WriteLine("Added to receiver: " + ReceiverMachine.ShowInfo(parts) + "\n");
+                            Console.ForegroundColor = ConsoleColor.White;
+                            Thread.Sleep(3000);
+
+                        }
+                        else if (statusReceiver == "yes")
+                        {
+                            Console.WriteLine("Reeboting Receiver machine. . . \n");
+                            ReceiverMachine.Reboot(ReceiverPartList);
+                            Thread.Sleep(3000);
+                            Console.ForegroundColor = ConsoleColor.Cyan;
+                            Console.WriteLine("||Receiver memory empty|| \n");
+                            Console.ForegroundColor = ConsoleColor.White;
+
+
+                        }
+                        //Thread.Sleep(4000);
+
+                        ////////////////////////////////////////////////////////////////
+                        if (statusStorage == "no")
+                        {
+                            StoragePartList.Add(parts);
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.WriteLine("Added to storage: " + storageMachine.ShowInfo(parts) + "\n");
+                            Console.ForegroundColor = ConsoleColor.White;
+                            Thread.Sleep(3000);
+
+                        }
+                        else if (statusStorage == "yes")
+                        {
+                            Console.WriteLine("Reeboting storage machine. . . \n");
+                            storageMachine.Reboot(StoragePartList);
+                            Thread.Sleep(3000);
+                            Console.ForegroundColor = ConsoleColor.Cyan;
+                            Console.WriteLine("||Storage memory empty|| \n");
+                            Console.ForegroundColor = ConsoleColor.White;
+                        }
+                        
+                        //Thread.Sleep(4000);
+                        ////////////////////////////////////////////////////////////////
+                        if (statusAssembler == "no")
+                        {
+                            AssemblerPartList.Add(parts);
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.WriteLine("Added to assembler: " + assemblingMachine.ShowInfo(parts) + "\n");
+                            Console.ForegroundColor = ConsoleColor.White;
+                            Thread.Sleep(3000);
+
+                        }
+                        else if (statusAssembler == "yes")
+                        {
+                            Console.WriteLine("Reeboting assembler machine. . . \n");
+                            assemblingMachine.Reboot(AssemblerPartList);
+                            Thread.Sleep(3000);
+                            Console.ForegroundColor = ConsoleColor.Cyan;
+                            Console.WriteLine("||Assembler memory empty|| \n");
+                            Console.ForegroundColor = ConsoleColor.White;
+                        }
+                        //Thread.Sleep(4000);
+                        ////////////////////////////////////////////////////////////////
+                        if (statusCheck == "no")
+                        {
+                            CheckerPartList.Add(parts);
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.WriteLine("Added to checker: " + CheckerMachine.ShowInfo(parts) + "\n");
+                            Console.ForegroundColor = ConsoleColor.White;
+                            Thread.Sleep(3000);
+
+                        }
+                        else if (statusCheck == "yes")
+                        {
+                            Console.WriteLine("Reeboting checker machine. . . \n");
+                            CheckerMachine.Reboot(CheckerPartList);
+                            Thread.Sleep(3000);
+                            Console.ForegroundColor = ConsoleColor.Cyan;
+                            Console.WriteLine("||Checker memory empty|| \n");
+                            Console.ForegroundColor = ConsoleColor.White;
+                        }
+                        //Thread.Sleep(4000);
+                        ////////////////////////////////////////////////////////////////
+                        if (statusPacker == "no")
+                        {
+                            PackerPartList.Add(parts);
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.WriteLine("Added to packer: " + PackingMachine.ShowInfo(parts) + "\n");
+                            Console.ForegroundColor = ConsoleColor.White;
+                            Thread.Sleep(3000);
+
+                        }
+                        else if (statusPacker == "yes")
+                        {
+                            Console.WriteLine("Reeboting Packer machine. . . \n");
+                            assemblingMachine.Reboot(PackerPartList);
+                            Thread.Sleep(3000);
+                            Console.ForegroundColor = ConsoleColor.Cyan;
+                            Console.WriteLine("||Packer memory empty|| \n");
+                            Console.ForegroundColor = ConsoleColor.White;
+                        }
+
+
+
+
                     }
                     
                 }

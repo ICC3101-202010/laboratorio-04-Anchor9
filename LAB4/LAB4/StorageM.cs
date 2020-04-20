@@ -24,6 +24,11 @@ namespace LAB4
             parts.Add(new Part(weight, height, width, type, brand, material));
         }
 
+        public string ShowInfo(Part part)
+        {
+            return part.Type + " " + part.Brand + " " + part.Material;
+        }
+
         public string StoragecheckMemory(List<Part> parts)
         {
             int parts_quantity = parts.Count();
@@ -31,13 +36,15 @@ namespace LAB4
 
             if (parts_quantity >= 4)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Storage memory full, please reboot Machine");
+                Console.ForegroundColor = ConsoleColor.White;
                 answer = "yes";
                 return answer;
             }
             else
             {
-                Console.WriteLine("Memory not yet full");
+                Console.WriteLine("Storage Memory not yet full");
                 answer = "no";
                 return answer;
             }

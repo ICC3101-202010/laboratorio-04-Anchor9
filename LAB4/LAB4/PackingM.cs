@@ -42,6 +42,11 @@ namespace LAB4
                 return answer;
             }
         }
+
+        public string ShowInfo(Part part)
+        {
+            return part.Type + " " + part.Brand + " " + part.Material;
+        }
         public override void TurnOff()
         {
             Console.WriteLine("Workday finished, turnning of Assembler");
