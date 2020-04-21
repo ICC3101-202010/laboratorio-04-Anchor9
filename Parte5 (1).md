@@ -16,6 +16,8 @@ otras maquinas hacen, por ende usar clases abstractas me causa un mejor orden al
 Explique cómo sabe .NET que complementación de un método heredado utilizar si se esta
 refiriendo a una instancia de la clase hija a través de la clase padre.
 
-Es porque va leyendo por niveles, partiendo del mas "general" hasta  el específico que quiere llegar, parte con la mas grande que puede contener la información como enunciado pero no especifica como actuar ni a quien, luego en las clases hijas se especifica que instancia se llama para así efectuar el método correspondiente.
+Es porque va leyendo por niveles, partiendo de la "clase mas hija" hasta la mas grande (abuelo , por llamarla así)
+ya que primero me refiero a un objeto de la clase (mas grande) y luego le especifico que función o subfunciones se le otorgan.
+
 
 
