@@ -16,6 +16,7 @@ namespace LAB4
             PackingM PackingMachine = new PackingM();
             ReceiverM ReceiverMachine = new ReceiverM();
             StorageM storageMachine = new StorageM();
+            Computer Computer = new Computer();
 
             List<Part> AssemblerPartList = new List<Part>();
             List<Part> CheckerPartList = new List<Part>();
@@ -51,8 +52,6 @@ namespace LAB4
             GeneralPartList.Add(part11);
             GeneralPartList.Add(part12);
 
-
-
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Welcome \n");
             Console.ForegroundColor = ConsoleColor.White;
@@ -74,14 +73,14 @@ namespace LAB4
                     Console.WriteLine("Actual time " + time + " working \n");
                     foreach (var parts in GeneralPartList)
                     {
-
-
                         string statusReceiver = ReceiverMachine.ReceivercheckMemory(ReceiverPartList);
                         string statusStorage = storageMachine.StoragecheckMemory(StoragePartList);
                         string statusAssembler = assemblingMachine.AcheckMemory(AssemblerPartList);
                         string statusCheck = CheckerMachine.CcheckMemory(CheckerPartList);
                         string statusPacker = PackingMachine.PackingcheckMemory(PackerPartList);
 
+                        ////////////  R  E  C  E  I  V  E  R  //////////////////////////////////////////
+                        //Computer.GetAdviceReceiver(statusReceiver, ReceiverMachine, ReceiverPartList);
                         if (statusReceiver == "no")
                         {
                             ReceiverPartList.Add(parts);
@@ -89,22 +88,16 @@ namespace LAB4
                             Console.WriteLine("Added to receiver: " + ReceiverMachine.ShowInfo(parts) + "\n");
                             Console.ForegroundColor = ConsoleColor.White;
                             Thread.Sleep(3000);
-
                         }
                         else if (statusReceiver == "yes")
                         {
-                            Console.WriteLine("Reeboting Receiver machine. . . \n");
-                            ReceiverMachine.Reboot(ReceiverPartList);
-                            Thread.Sleep(3000);
-                            Console.ForegroundColor = ConsoleColor.Cyan;
-                            Console.WriteLine("||Receiver memory empty|| \n");
-                            Console.ForegroundColor = ConsoleColor.White;
-
-
+                            Computer.GetAdviceReceiver(statusReceiver, ReceiverMachine, ReceiverPartList);
+                            //Console.WriteLine("Reeboting Receiver machine. . . \n");
                         }
                         //Thread.Sleep(4000);
-
-                        ////////////////////////////////////////////////////////////////
+                        ////////////////  S  T  O   R  A  G  E  ////////////////////////////////////////////////
+                        
+                        //Computer.GetAdviceStorage(statusStorage, storageMachine, StoragePartList);
                         if (statusStorage == "no")
                         {
                             StoragePartList.Add(parts);
@@ -112,20 +105,16 @@ namespace LAB4
                             Console.WriteLine("Added to storage: " + storageMachine.ShowInfo(parts) + "\n");
                             Console.ForegroundColor = ConsoleColor.White;
                             Thread.Sleep(3000);
-
                         }
                         else if (statusStorage == "yes")
                         {
-                            Console.WriteLine("Reeboting storage machine. . . \n");
-                            storageMachine.Reboot(StoragePartList);
-                            Thread.Sleep(3000);
-                            Console.ForegroundColor = ConsoleColor.Cyan;
-                            Console.WriteLine("||Storage memory empty|| \n");
-                            Console.ForegroundColor = ConsoleColor.White;
+                            //Console.WriteLine("Reeboting storage machine. . . \n");
+                            Computer.GetAdviceStorage(statusStorage, storageMachine, StoragePartList);
                         }
-                        
                         //Thread.Sleep(4000);
-                        ////////////////////////////////////////////////////////////////
+                        //////////////// /A  S  S  E  M  B  L  E  R  ///////////////////////////////////////////////
+
+                        //Computer.GetAdviceAssembly(statusAssembler, assemblingMachine, AssemblerPartList);
                         if (statusAssembler == "no")
                         {
                             AssemblerPartList.Add(parts);
@@ -133,19 +122,16 @@ namespace LAB4
                             Console.WriteLine("Added to assembler: " + assemblingMachine.ShowInfo(parts) + "\n");
                             Console.ForegroundColor = ConsoleColor.White;
                             Thread.Sleep(3000);
-
                         }
                         else if (statusAssembler == "yes")
                         {
-                            Console.WriteLine("Reeboting assembler machine. . . \n");
-                            assemblingMachine.Reboot(AssemblerPartList);
-                            Thread.Sleep(3000);
-                            Console.ForegroundColor = ConsoleColor.Cyan;
-                            Console.WriteLine("||Assembler memory empty|| \n");
-                            Console.ForegroundColor = ConsoleColor.White;
+                            Computer.GetAdviceAssembly(statusAssembler, assemblingMachine, AssemblerPartList);
+
                         }
                         //Thread.Sleep(4000);
-                        ////////////////////////////////////////////////////////////////
+                        ///////////////  C  H  E  C  K  E  R  /////////////////////////////////////////////////
+
+                        Computer.GetAdviceCheck(statusCheck, CheckerMachine, CheckerPartList);
                         if (statusCheck == "no")
                         {
                             CheckerPartList.Add(parts);
@@ -157,15 +143,13 @@ namespace LAB4
                         }
                         else if (statusCheck == "yes")
                         {
-                            Console.WriteLine("Reeboting checker machine. . . \n");
-                            CheckerMachine.Reboot(CheckerPartList);
-                            Thread.Sleep(3000);
-                            Console.ForegroundColor = ConsoleColor.Cyan;
-                            Console.WriteLine("||Checker memory empty|| \n");
-                            Console.ForegroundColor = ConsoleColor.White;
+                            //Console.WriteLine("Reeboting checker machine. . . \n");
+                            Computer.GetAdviceCheck(statusCheck, CheckerMachine, CheckerPartList);
                         }
                         //Thread.Sleep(4000);
-                        ////////////////////////////////////////////////////////////////
+                        ///////////////// P  A  C  K  E  R  ///////////////////////////////////////////////
+
+                        //Computer.GetAdvicePacking(statusPacker, PackingMachine, PackerPartList);
                         if (statusPacker == "no")
                         {
                             PackerPartList.Add(parts);
@@ -173,29 +157,15 @@ namespace LAB4
                             Console.WriteLine("Added to packer: " + PackingMachine.ShowInfo(parts) + "\n");
                             Console.ForegroundColor = ConsoleColor.White;
                             Thread.Sleep(3000);
-
                         }
                         else if (statusPacker == "yes")
                         {
-                            Console.WriteLine("Reeboting Packer machine. . . \n");
-                            assemblingMachine.Reboot(PackerPartList);
-                            Thread.Sleep(3000);
-                            Console.ForegroundColor = ConsoleColor.Cyan;
-                            Console.WriteLine("||Packer memory empty|| \n");
-                            Console.ForegroundColor = ConsoleColor.White;
+                            //Console.WriteLine("Reeboting Packer machine. . . \n");
+                            Computer.GetAdvicePacking(statusPacker, PackingMachine, PackerPartList);
                         }
-
-
-
-
-                    }
-                    
+                    }                    
                 }
-                
-
-            }
-
-            
+            }            
         }
     }
 }

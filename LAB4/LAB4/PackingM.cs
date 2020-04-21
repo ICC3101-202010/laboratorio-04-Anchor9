@@ -31,7 +31,9 @@ namespace LAB4
 
             if (parts_quantity >= 4)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Packer memory full, please reboot Machine");
+                Console.ForegroundColor = ConsoleColor.White;
                 answer = "yes";
                 return answer;
             }
